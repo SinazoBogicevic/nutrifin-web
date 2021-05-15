@@ -1,4 +1,4 @@
-import React, {FC, ReactElement} from "react";
+import React, {FC, ReactElement, useContext, useEffect} from "react";
 import {createStyles, makeStyles, Theme, fade} from "@material-ui/core/styles"
 
 import AppBar from '@material-ui/core/AppBar';
@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import {green} from "@material-ui/core/colors";
+import { useQuery } from "../../QueryContext";
 
 interface Props {
     placeholder: String
@@ -58,9 +59,11 @@ createStyles({
         
       },
 })
-)
+);
+
 
 const Searchbar: FC<Props> = () : ReactElement => {
+  const {query, setQuery} = useQuery();
     const classes = useStyles();
     return (
         <div className={classes.container}>
@@ -77,6 +80,8 @@ const Searchbar: FC<Props> = () : ReactElement => {
                 input: classes.inputInput_hero,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
             />
         
           </div>

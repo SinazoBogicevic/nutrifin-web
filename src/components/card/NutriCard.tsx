@@ -5,9 +5,12 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import CaloriesIcon from "@material-ui/icons/DirectionsRun";
 import React, {FC, ReactElement} from "react";
 import background from "../../images/background.jpg";
+import { useModal } from "../../ModalContext";
 
 interface Props{
-    data: String
+  id:number
+    title: String,
+    image: any
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -26,10 +29,17 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const NutriCard  = () : ReactElement => {
+const NutriCard: FC<Props>  = ({id, title, image}) : ReactElement => {
     const classes = useStyles();
+    const {open,setId, setOpen} = useModal();
+
+    const sendModalData = () => {
+      setId(id);
+      setOpen(!open)
+    }
+    
     return(
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={6} md={4} onClick={sendModalData}>
             <Card className={classes.root}> 
             <CardHeader action={
               <IconButton aria-label='like'>
@@ -38,11 +48,11 @@ const NutriCard  = () : ReactElement => {
             }/>
             <CardMedia
             className={classes.media}
-            image={background}
+            image={image}
             title="food"/>
             <CardContent className={classes.center}>
               <Typography color="textSecondary" component='p'>
-                data
+                {title}
               </Typography>
             </CardContent>
             <CardActions disableSpacing>

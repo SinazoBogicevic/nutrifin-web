@@ -1,4 +1,4 @@
-import React, {ReactElement, FC} from "react";
+import React, {ReactElement, FC, useEffect} from "react";
 import Toolbar from "@material-ui/core/Toolbar";
 import SearchIcon from "@material-ui/icons/Search";
 import Typography from "@material-ui/core/Typography";
@@ -6,6 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import green from "@material-ui/core/colors/green"
 import { AppBar, InputBase, Hidden } from "@material-ui/core";
 import {makeStyles, createStyles, Theme, fade} from "@material-ui/core/styles"
+import { useQuery } from "../../QueryContext";
+import { Link, useHistory} from "react-router-dom";
 
 
 interface Props{
@@ -17,6 +19,10 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
+    },
+    link:{
+      textDecoration: 'none',
+      color: 'white'
     },
     abRoot:{
       backgroundColor: primary
@@ -71,19 +77,27 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Navbar : FC<Props> = ({title}) : ReactElement => {
     const classes = useStyles();
+    const {query, setQuery} = useQuery();
+
     return (
         <div className={classes.root}>
         <AppBar position="static" className={classes.abRoot}>
           <Toolbar>
             
-            <Typography className={classes.title} variant="h3" noWrap>
-              {title}
+            <Typography  className={classes.title} variant="h3" noWrap>
+              <Link className={classes.link} to="/">
+                {title}
+              </Link>
             </Typography>
+            {/*
+
             <Hidden xsDown>
+
             <div className={classes.search}>
               <div className={classes.searchIcon}>
-                <SearchIcon />
+                <SearchIcon onClick={() => console.log("redirect")}/>
               </div>
+              
               <InputBase
                 placeholder="Search…"
                 classes={{
@@ -91,11 +105,18 @@ const Navbar : FC<Props> = ({title}) : ReactElement => {
                   input: classes.inputInput,
                 }}
                 inputProps={{ 'aria-label': 'search' }}
+                value={query}
+                onChange={(e) => 
+                  setQuery(e.target.value)
+                  }
               />
+                
             </div>
             </Hidden>
+                */}
           </Toolbar>
         </AppBar>
+        
       </div>
     )
 }
