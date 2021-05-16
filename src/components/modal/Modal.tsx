@@ -6,48 +6,20 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import { useModal } from '../../ModalContext';
+import { useModal,Nutrition } from '../../ModalContext';
 import { API_KEY } from '../../utils/constants';
 
-interface Nutrition{
-    title:string,
-    importantBadges: string[],
-    nutrition: {},
-    description: string,
-    ingredientList:string,
-    images: string[]
-}
 
 const Modal = () : ReactElement => {
-  const {id, open, setOpen} = useModal();
+  const {id, open,nutrition, setOpen} = useModal();
   const [productInfo, setProductInfo] = useState<Nutrition[]>([]);
   
-  const fetchModalInfo = async(id:number) => {
 
-    const api = `https://api.spoonacular.com/food/products/${id}?apiKey=${API_KEY}`
-    console.log(api);
-    const req = await fetch(api);
-    
-    try{
-    if(req.status === 200){
-        const res = await req.json();
-        console.log(res);
-        setProductInfo(res);
-        return res.results;
-    }
-}catch(e){
-    console.log(e);
-    //throw new Error('error');
-}
-  }
 
   const handleClose = () => {
     setOpen(!open);
   };
 
-  useEffect(() => {
-      fetchModalInfo(id)
-  },[id])
 
   return (
     <div>

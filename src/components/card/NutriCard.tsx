@@ -6,6 +6,7 @@ import CaloriesIcon from "@material-ui/icons/DirectionsRun";
 import React, {FC, ReactElement} from "react";
 import background from "../../images/background.jpg";
 import { useModal } from "../../ModalContext";
+import {API_KEY} from "../../utils/constants"
 
 interface Props{
   id:number
@@ -31,12 +32,35 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const NutriCard: FC<Props>  = ({id, title, image}) : ReactElement => {
     const classes = useStyles();
-    const {open,setId, setOpen} = useModal();
+    const {open,setId,nutrition, setOpen, setNutrition} = useModal();
+
+    const fetchModalInfo = async(id:number) => {
+
+      const api = `https://api.spoonacular.com/food/products/${id}?apiKey=${API_KEY}`
+      console.log(api);
+      const req = await fetch(api);
+      
+      try{
+      if(req.status === 200){
+          const res = await req.json();
+          const {title, importantBadges, nutritionInfo, description, ingredientList, images} = res;
+          const data = {title, importantBadges, nutritionInfo, description, ingredientList, images}
+          console.log(data)
+          setNutrition(data);
+          return res.results;
+      }
+  }catch(e){
+      console.log(e);
+      //throw new Error('error');
+  }
+    }
 
     const sendModalData = () => {
       setId(id);
+      fetchModalInfo(id)
       setOpen(!open)
     }
+
     
     return(
         <Grid item xs={12} sm={6} md={4} onClick={sendModalData}>
