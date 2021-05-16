@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Layout from './components/Layout';
 import Results from './pages/Results';
+import Table from "./components/table/Table";
 import {ModalContext} from "./ModalContext";
 import { QueryContext } from './QueryContext';
 
@@ -29,6 +30,7 @@ function App() {
       <Layout>
       <Route exact path="/" component={Home}/>
       <Route path="/search" component={Results}/>
+      <Route path="/table" component={Table} />
     </Layout>
     </QueryContext.Provider>
     </ModalContext.Provider>

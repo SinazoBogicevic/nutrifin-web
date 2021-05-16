@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const NutriCard: FC<Props>  = ({id, title, image}) : ReactElement => {
     const classes = useStyles();
-    const {open,setId,nutrition, setOpen, setNutrition} = useModal();
+    const {open,setId,setOpen, setNutrition} = useModal();
 
     const fetchModalInfo = async(id:number) => {
 
