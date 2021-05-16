@@ -8,11 +8,15 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { useModal} from '../../ModalContext';
 import { CardMedia } from '@material-ui/core';
-import {DialogContentText, DialogProps, Avatar, IconButton, Card, Collapse, CardContent ,makeStyles, createStyles, Theme, CardHeader, CardActions, } from "@material-ui/core"
+import {DialogContentText, 
+  DialogProps, Avatar, IconButton, Card, Collapse, 
+  CardContent ,makeStyles, createStyles, Theme, CardHeader, 
+  CardActions, } from "@material-ui/core"
 import green from "@material-ui/core/colors/green"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import clsx from 'clsx';
+import Tables from "../table/Tables"
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -22,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     media: {
       height: 0,
-      paddingTop: '56.25%', // 16:9
+      paddingTop: '56.25%',
     },
     expand: {
       transform: 'rotate(0deg)',
@@ -43,9 +47,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Modal = () : ReactElement => {
   const classes = useStyles();
-  const {open,nutrition, setOpen} = useModal();
+  const {open,mNutrition, setOpen} = useModal();
   const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper');
-  const {title, description, ingredientList, images} = nutrition;
+  const {title, description, nutrition, ingredientList, images} = mNutrition;
   const imgUrl = images[0];
 
   const descriptionElementRef = React.useRef<HTMLElement>(null);
@@ -127,6 +131,7 @@ const Modal = () : ReactElement => {
           <Typography paragraph>
             {ingredientList}
           </Typography>
+          <Tables data={nutrition}/>
         </CardContent>
       </Collapse>
     </Card>

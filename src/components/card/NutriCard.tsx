@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const NutriCard: FC<Props>  = ({id, title, image}) : ReactElement => {
     const classes = useStyles();
-    const {open,setId,setOpen, setNutrition} = useModal();
+    const {open,setId,setOpen, setmNutrition} = useModal();
 
     const fetchModalInfo = async(id:number) => {
 
@@ -43,10 +43,10 @@ const NutriCard: FC<Props>  = ({id, title, image}) : ReactElement => {
       try{
       if(req.status === 200){
           const res = await req.json();
-          const {title, importantBadges, nutritionInfo, description, ingredientList, images} = res;
-          const data = {title, importantBadges, nutritionInfo, description, ingredientList, images}
+          const {title, importantBadges, nutrition, description, ingredientList, images} = res;
+          const data = {title, importantBadges, nutrition, description, ingredientList, images}
           console.log(data)
-          setNutrition(data);
+          setmNutrition(data);
           return res.results;
       }
   }catch(e){

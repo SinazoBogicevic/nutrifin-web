@@ -1,9 +1,24 @@
 import {createContext, useContext} from "react";
 
+export type productNutrients = {
+    name: string,
+    amount:number
+    unit: string,
+  
+  }
+
+export type productNutrition  = {
+    caloricBreakdown: string[],
+    calories: number
+    carbs: string
+    fat: string
+    nutrients: productNutrients[]
+    }
+
 export type Nutrition = {
     title:string,
     importantBadges: string[],
-    nutritionInfo: string[],
+    nutrition: productNutrition,
     description: string,
     ingredientList:string,
     images: string[]
@@ -13,16 +28,30 @@ export type Nutrition = {
 export type ModalContextType = {
     id: number,
     open: boolean,
-    nutrition: Nutrition,
+    mNutrition: Nutrition,
     setId: (key: number) => void,
     setOpen: (click: boolean) => void,
-    setNutrition: (list: Nutrition) => void
+    setmNutrition: (list: Nutrition) => void
+}
+
+const  nutrients = {
+    name: '',
+    amount: -1,
+    unit: '',
+}
+
+const productNutri = {
+    caloricBreakdown: [''],
+    calories: -1,
+    carbs: '',
+    fat: '',
+    nutrients: [nutrients]
 }
 
 const info = {
     title:'',
     importantBadges: [''],
-    nutritionInfo: [''],
+    nutrition: productNutri,
     description: '',
     ingredientList: '',
     images: ['']
@@ -31,10 +60,10 @@ const info = {
 export const ModalContext = createContext<ModalContextType>({
     id: -1,
     open: false,
-    nutrition: info,
+    mNutrition: info,
     setId: id => console.log('card not clicked'),
     setOpen: open => console.log("modal not open"),
-    setNutrition: nutrition => console.log("no nutrition fetched")
+    setmNutrition: mNutrition => console.log("no nutrition fetched")
 })
 
 export const useModal = () => useContext(ModalContext)

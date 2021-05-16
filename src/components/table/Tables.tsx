@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, ReactElement, useEffect } from 'react';
 import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import {productNutrition} from "../../ModalContext"
 
 const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
@@ -44,39 +45,52 @@ const rows = [
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 700,
+    minWidth: 'auto',
   },
 });
 
-export default function CustomizedTables() {
+
+interface Props{
+    data: productNutrition
+}
+
+const Tables : FC<Props> = ({data}) : ReactElement => {
   const classes = useStyles();
+  const {nutrients} = data;
+
+
+  useEffect(() => {
+    console.log(nutrients)
+  }, [nutrients])
 
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+            <StyledTableCell>Nutrition Information</StyledTableCell>
+            <StyledTableCell align="right">Amount</StyledTableCell>
+            <StyledTableCell align="right">unit</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
-            </StyledTableRow>
-          ))}
+
+          {
+            nutrients.map(({name, amount, unit}) => {
+              return <StyledTableRow key={name}>
+                <StyledTableCell component="th" scope="row">
+                  {name}
+                </StyledTableCell>
+                <StyledTableCell align="right">{amount}</StyledTableCell>
+                <StyledTableCell align="right">{unit}</StyledTableCell>
+              </StyledTableRow>
+            })
+          }
+          
         </TableBody>
       </Table>
     </TableContainer>
   );
 }
+
+export default Tables
