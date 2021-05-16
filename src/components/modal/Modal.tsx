@@ -7,6 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { useModal } from '../../ModalContext';
+import { API_KEY } from '../../utils/constants';
 
 interface Nutrition{
     title:string,
@@ -23,7 +24,7 @@ const Modal = () : ReactElement => {
   
   const fetchModalInfo = async(id:number) => {
 
-    const api = `https://api.spoonacular.com/food/products/${id}?apiKey=86cb0402dc1141f09758a8efee3ab96e`
+    const api = `https://api.spoonacular.com/food/products/${id}?apiKey=${API_KEY}`
     console.log(api);
     const req = await fetch(api);
     
@@ -46,7 +47,7 @@ const Modal = () : ReactElement => {
 
   useEffect(() => {
       fetchModalInfo(id)
-  })
+  },[id])
 
   return (
     <div>
@@ -56,7 +57,7 @@ const Modal = () : ReactElement => {
         open={open}
       >
         <DialogTitle id="alert-dialog-slide-title">
-          {id}
+          {productInfo[0]?.title}
         </DialogTitle>
         <DialogContent dividers >
           <Typography gutterBottom>
