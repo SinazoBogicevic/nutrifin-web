@@ -49,7 +49,7 @@ const Results = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const searchProducts = async(query:string) => {
 
-        const api = `https://api.spoonacular.com/food/products/search?apiKey=${process.env.REACT_APP_API_KEY}&query=${query}&number=10`;
+        const api = `https://api.spoonacular.com/food/products/search?apiKey=${process.env.REACT_APP_API_KEY}&query=${query}&number=50`;
     
         const req = await fetch(api);
     try{

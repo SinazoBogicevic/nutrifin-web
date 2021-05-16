@@ -22,7 +22,7 @@ createStyles({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundImage: `url(${background})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),url(${background})`,
         backgroundSize:'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',

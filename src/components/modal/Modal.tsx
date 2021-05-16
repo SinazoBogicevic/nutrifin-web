@@ -36,6 +36,9 @@ const useStyles = makeStyles((theme: Theme) =>
     avatar: {
       backgroundColor: green[400],
     },
+    MuiDialogContentTextRoot:{
+      marginBottom: '1px'
+    }
   }),
 );
 
@@ -80,6 +83,7 @@ const Modal = () : ReactElement => {
         
         <DialogContentText
             id="scroll-dialog-description"
+            className={classes.MuiDialogContentTextRoot}
             ref={descriptionElementRef}
             tabIndex={-1}
           >
@@ -103,7 +107,7 @@ const Modal = () : ReactElement => {
         image={imgUrl}
         title={title}
       />
-      <CardContent>
+      <CardContent >
         <Typography variant="body2" color="textSecondary" component="p">
           {description}
         </Typography>
@@ -122,7 +126,7 @@ const Modal = () : ReactElement => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Ingridients:</Typography>
+          <Typography paragraph>Ingredients:</Typography>
           <Typography paragraph>
             {ingredientList}
           </Typography>
