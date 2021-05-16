@@ -4,9 +4,7 @@ import ShareIcon from "@material-ui/icons/Share";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import CaloriesIcon from "@material-ui/icons/DirectionsRun";
 import React, {FC, ReactElement} from "react";
-import background from "../../images/background.jpg";
 import { useModal } from "../../ModalContext";
-import {API_KEY} from "../../utils/constants"
 
 interface Props{
   id:number
@@ -36,7 +34,7 @@ const NutriCard: FC<Props>  = ({id, title, image}) : ReactElement => {
 
     const fetchModalInfo = async(id:number) => {
 
-      const api = `https://api.spoonacular.com/food/products/${id}?apiKey=${API_KEY}`
+      const api = `https://api.spoonacular.com/food/products/${id}?apiKey=${process.env.REACT_APP_API_KEY}`
       console.log(api);
       const req = await fetch(api);
       

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Searchbar from "../components/searchbar/Searchbar";
-import {API_KEY, NO_RESULTS, PLACEHOLDER, RESULTS_FOR, SEARCH_GREETING, SEARCH_MESSAGE} from "../utils/constants";
+import {NO_RESULTS, PLACEHOLDER, RESULTS_FOR, SEARCH_GREETING, SEARCH_MESSAGE} from "../utils/constants";
 import {Box, Container,makeStyles, Theme, createStyles, CssBaseline, Typography} from "@material-ui/core";
 import {blueGrey} from "@material-ui/core/colors"
 import List from "../components/list/List";
@@ -49,7 +49,7 @@ const Results = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const searchProducts = async(query:string) => {
 
-        const api = `https://api.spoonacular.com/food/products/search?apiKey=${API_KEY}&query=${query}&number=10`;
+        const api = `https://api.spoonacular.com/food/products/search?apiKey=${process.env.REACT_APP_API_KEY}&query=${query}&number=10`;
     
         const req = await fetch(api);
     try{

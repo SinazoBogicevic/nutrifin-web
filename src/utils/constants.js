@@ -6,4 +6,3 @@ export const SEARCH_MESSAGE = "Let's get you healthy!"
 export const PLACEHOLDER = "search"
 export const RESULTS_FOR = "Results for "
 export const NO_RESULTS = "results"
-export const API_KEY = `19c53208e0a547f5907ce7d28814fb8a`
