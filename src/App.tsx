@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Home from './pages/Home';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import Layout from './components/Layout';
+import Layout from './components/layout/Layout';
 import Results from './pages/Results';
 import {ModalContext} from "./ModalContext";
 import { QueryContext } from './QueryContext';

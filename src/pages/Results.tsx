@@ -23,7 +23,7 @@ createStyles({
     },
     text:{
         display: 'flex',
-        alignItems: 'flex-end',
+        alignItems: 'baseline',
         color: grey
     },
     bold:{

@@ -1,10 +1,5 @@
 import React, {ReactElement, useEffect, useState}from 'react';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
-import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { useModal} from '../../ModalContext';
 import { CardMedia } from '@material-ui/core';
@@ -48,7 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const Modal = () : ReactElement => {
   const classes = useStyles();
   const {open,mNutrition, setOpen} = useModal();
-  const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper');
+  const [scroll] = React.useState<DialogProps['scroll']>('paper');
   const {title, description, nutrition, ingredientList, images} = mNutrition;
   const imgUrl = images[0];
 
@@ -101,7 +96,7 @@ const Modal = () : ReactElement => {
           </IconButton>
         }
         title={title}
-        subheader="September 14, 2016"
+        subheader="May 16, 2021"
       />
       <CardMedia
         className={classes.media}

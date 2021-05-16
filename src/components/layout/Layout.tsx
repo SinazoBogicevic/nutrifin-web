@@ -1,8 +1,8 @@
 import React, {FC, ReactNode} from "react";
 import {makeStyles, createStyles, Theme} from "@material-ui/core/styles";
 import {CssBaseline} from "@material-ui/core";
-import {APP_TITLE} from "../utils/constants";
-import Navbar from "./navbar/Navbar";
+import {APP_TITLE} from "../../utils/constants";
+import Navbar from "../navbar/Navbar";
 
 const useStyles = makeStyles((theme: Theme) =>
 createStyles({
