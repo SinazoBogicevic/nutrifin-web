@@ -1,4 +1,4 @@
-import React, {FC, ReactElement, useContext, useEffect} from "react";
+import React, {FC, ReactElement} from "react";
 import {createStyles, makeStyles, Theme, fade} from "@material-ui/core/styles"
 
 import AppBar from '@material-ui/core/AppBar';
